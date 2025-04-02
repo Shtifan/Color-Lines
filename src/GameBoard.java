@@ -7,7 +7,6 @@ import java.util.Random;
 
 public class GameBoard {
     private static final int SIZE = 9;
-    private static final int COLORS = 7;
     private static final int CONNECT_COUNT = 5;
 
     private BallButton[][] board;
