@@ -21,15 +21,6 @@ public class GameFrame extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 gameBoard.deselectAll();
-
-                // Force a save of the high score when closing
-                System.out.println("Saving high score on exit: " + scoreManager.getHighScore());
-                if (scoreManager.getScore() > scoreManager.getHighScore()) {
-                    scoreManager.updateHighScore();
-                } else {
-                    // Now we can call our public save method
-                    scoreManager.saveHighScoreNow();
-                }
             }
         });
 

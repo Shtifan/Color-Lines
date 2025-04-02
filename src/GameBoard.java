@@ -24,12 +24,10 @@ public class GameBoard {
         initializeBoard();
     }
 
-    // Getter for the board array
     public BallButton[][] getBoard() {
         return board;
     }
 
-    // Getters for selected position
     public int getSelectedRow() {
         return selectedRow;
     }
@@ -68,7 +66,6 @@ public class GameBoard {
         selectedRow = -1;
         selectedCol = -1;
 
-        // Clear the board
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 board[row][col].setBallColor(null);
@@ -246,6 +243,7 @@ public class GameBoard {
             int regularScore = cleared * 2;
             int bonusScore = crossBonus * 8;
             scoreManager.addScore(regularScore + bonusScore);
+            scoreManager.updateHighScore();
             return true;
         }
         return false;
@@ -306,7 +304,6 @@ public class GameBoard {
                     selectedRow = -1;
                     selectedCol = -1;
 
-                    // Force refresh of the UI
                     gamePanel.revalidate();
                     gamePanel.repaint();
 

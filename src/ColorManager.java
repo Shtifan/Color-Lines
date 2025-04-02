@@ -13,7 +13,7 @@ public class ColorManager {
     public ColorManager() {
         tileColors = new Color[] {
                 Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW,
-                Color.MAGENTA, Color.CYAN, new Color(139, 69, 19) // Brown
+                Color.MAGENTA, Color.CYAN, new Color(139, 69, 19)
         };
         nextColors = new Color[NEXT_COLORS_COUNT];
         random = new Random();
@@ -27,7 +27,6 @@ public class ColorManager {
         return nextColors;
     }
 
-    // Method to set next colors from loaded data
     public void setNextColors(Color[] colors) {
         if (colors != null && colors.length == nextColors.length) {
             for (int i = 0; i < colors.length; i++) {

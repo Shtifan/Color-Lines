@@ -62,7 +62,6 @@ public class ScoreManager {
                 highScoreLabel.setText("High Score: " + highScore);
             }
             saveHighScore();
-
             System.out.println("New high score achieved and saved: " + highScore);
         }
     }
