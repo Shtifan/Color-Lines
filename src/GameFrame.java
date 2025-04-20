@@ -20,7 +20,7 @@ public class GameFrame extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                gameBoard.deselectAll();
+                gameBoard.saveState();
             }
         });
 
@@ -33,7 +33,9 @@ public class GameFrame extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
 
-        gameBoard.startNewGame();
+        if (!gameBoard.loadState()) {
+            gameBoard.startNewGame();
+        }
     }
 
     private void initializeTopPanel() {
@@ -47,9 +49,7 @@ public class GameFrame extends JFrame {
 
         JButton newGameButton = new JButton("New Game");
         newGameButton.addActionListener(e -> {
-            int choice = JOptionPane.showConfirmDialog(this,
-                    "Start a new game? Current progress will be lost.",
-                    "New Game", JOptionPane.YES_NO_OPTION);
+            int choice = JOptionPane.showConfirmDialog(this, "Start a new game? Current progress will be lost.", "New Game", JOptionPane.YES_NO_OPTION);
             if (choice == JOptionPane.YES_OPTION) {
                 gameBoard.startNewGame();
             }

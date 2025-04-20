@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ColorLines:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ColorLines_jar</output-path>
+    <root id="archive" name="ColorLines.jar">
+      <element id="module-output" name="ColorLines" />
+    </root>
+  </artifact>
+</component>

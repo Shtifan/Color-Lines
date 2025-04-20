@@ -11,10 +11,7 @@ public class ColorManager {
     private Random random;
 
     public ColorManager() {
-        tileColors = new Color[] {
-                Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW,
-                Color.MAGENTA, Color.CYAN, new Color(139, 69, 19)
-        };
+        tileColors = new Color[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.MAGENTA, Color.CYAN, new Color(139, 69, 19)};
         nextColors = new Color[NEXT_COLORS_COUNT];
         random = new Random();
     }
@@ -45,5 +42,9 @@ public class ColorManager {
         if (nextColorsPanel != null) {
             nextColorsPanel.updateNextColorsPreview();
         }
+    }
+
+    public Color[] getTileColors() {
+        return tileColors;
     }
 }

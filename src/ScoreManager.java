@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class ScoreManager {
-    private static final String DATA_FILE = System.getProperty("user.dir") + File.separator + "data.dat";
+    private static final String HIGH_SCORE_FILE = System.getProperty("user.dir") + File.separator + "highscore.dat";
     private int score = 0;
     private int highScore = 0;
     private JLabel scoreLabel;
@@ -10,8 +10,6 @@ public class ScoreManager {
 
     public ScoreManager() {
         loadHighScore();
-        System.out.println("ScoreManager initialized with high score: " + highScore);
-        System.out.println("Using data file: " + DATA_FILE);
     }
 
     public void setScoreLabels(JLabel scoreLabel, JLabel highScoreLabel) {
@@ -62,55 +60,44 @@ public class ScoreManager {
                 highScoreLabel.setText("High Score: " + highScore);
             }
             saveHighScore();
-            System.out.println("New high score achieved and saved: " + highScore);
+        }
+    }
+
+    public void setHighScore(int highScore) {
+        this.highScore = highScore;
+        if (highScoreLabel != null) {
+            highScoreLabel.setText("High Score: " + highScore);
         }
     }
 
     private void loadHighScore() {
-        File file = new File(DATA_FILE);
+        File file = new File(HIGH_SCORE_FILE);
         if (!file.exists() || file.length() == 0) {
-            System.out.println("High score file not found or empty: " + file.getAbsolutePath());
             highScore = 0;
             return;
         }
-
         try (DataInputStream in = new DataInputStream(new FileInputStream(file))) {
             highScore = in.readInt();
-            System.out.println("High score loaded: " + highScore + " from " + file.getAbsolutePath());
         } catch (IOException e) {
-            System.err.println("Error loading high score: " + e.getMessage());
-            e.printStackTrace();
             highScore = 0;
         }
     }
 
     private void saveHighScore() {
-        File file = new File(DATA_FILE);
-
+        File file = new File(HIGH_SCORE_FILE);
         File parent = file.getParentFile();
         if (parent != null && !parent.exists()) {
             parent.mkdirs();
-            System.out.println("Created directory: " + parent.getAbsolutePath());
         }
-
         try (DataOutputStream out = new DataOutputStream(new FileOutputStream(file))) {
             out.writeInt(highScore);
             out.flush();
-            System.out.println("High score saved: " + highScore + " to " + file.getAbsolutePath());
-
-            if (file.exists()) {
-                System.out.println("Verified file exists with size: " + file.length() + " bytes");
-            } else {
-                System.err.println("WARNING: File does not exist after save attempt!");
-            }
         } catch (IOException e) {
-            System.err.println("Error saving high score: " + e.getMessage());
-            e.printStackTrace();
+
         }
     }
 
     public void saveHighScoreNow() {
-        System.out.println("Forcing save of high score: " + highScore);
         saveHighScore();
     }
 }
